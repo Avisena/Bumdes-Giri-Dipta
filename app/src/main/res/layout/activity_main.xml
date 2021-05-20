@@ -11,7 +11,7 @@
    <Button
        android:layout_width="200dp"
        android:layout_height="wrap_content"
-       android:text="Add Contact"
+       android:text="Add Data"
        android:id="@+id/b1"
        android:layout_marginTop="80dp"
        android:onClick="addContact"
@@ -21,7 +21,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="View Contact"
+        android:text="View Data"
         android:id="@+id/b2"
         android:layout_marginTop="80dp"
         android:onClick="viewContacts"

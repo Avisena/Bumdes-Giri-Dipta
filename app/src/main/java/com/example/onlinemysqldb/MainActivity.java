@@ -39,4 +39,9 @@ public class MainActivity extends Activity {
     {
       startActivity(new Intent(this, Addinfo.class));
     }
+
+    public void viewContacts(View view)
+    {
+        startActivity(new Intent(this, VehiclesListActivity.class));
+    }
 }

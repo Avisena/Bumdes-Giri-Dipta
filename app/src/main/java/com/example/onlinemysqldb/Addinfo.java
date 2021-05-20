@@ -20,23 +20,21 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class Addinfo extends Activity {
-EditText Name, Email, Mobile;
-String name,email,mobile;
+EditText Kategori_kendaraan, Nomor_kartu;
+String kategori_kendaraan, nomor_kartu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_info_layout);
-        Name = (EditText) findViewById(R.id.et_name);
-        Email = (EditText) findViewById(R.id.et_email);
-        Mobile = (EditText) findViewById(R.id.et_mob);
+        Kategori_kendaraan = (EditText) findViewById(R.id.et_kategori);
+        Nomor_kartu = (EditText) findViewById(R.id.et_nomorkartu);
     }
 
     public void saveInfo(View view) {
-name = Name.getText().toString();
-email = Email.getText().toString();
-mobile = Mobile.getText().toString();
+nomor_kartu = Kategori_kendaraan.getText().toString();
+kategori_kendaraan = Nomor_kartu.getText().toString();
 BackgroundTask backgroundTask = new BackgroundTask();
-backgroundTask.execute(name,email,mobile);
+backgroundTask.execute(kategori_kendaraan,nomor_kartu);
 finish();
     }
 
@@ -50,10 +48,9 @@ finish();
 
         @Override
         protected String doInBackground(String... args) {
-            String name,email,mobile;
-            name=args[0];
-            email=args[1];
-            mobile=args[2];
+            String nomor_kartu, kategori_kendaraan;
+            kategori_kendaraan=args[1];
+            nomor_kartu=args[0];
             try {
                 URL url = new URL(add_info_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection ) url.openConnection();
@@ -61,9 +58,8 @@ finish();
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
-                String data_string = URLEncoder.encode("name","UTF-8")+"="+ URLEncoder.encode(name, "UTF-8")+"&"+
-                        URLEncoder.encode("email","UTF-8")+"="+ URLEncoder.encode(email, "UTF-8")+"&"+
-                        URLEncoder.encode("mobile","UTF-8")+"="+ URLEncoder.encode(mobile, "UTF-8");
+                String data_string = URLEncoder.encode("kategori","UTF-8")+"="+ URLEncoder.encode(kategori_kendaraan, "UTF-8")+"&"+
+                        URLEncoder.encode("nomor","UTF-8")+"="+ URLEncoder.encode(nomor_kartu, "UTF-8");
                 bufferedWriter.write(data_string);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -71,7 +67,7 @@ finish();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                return "One row inserted";
+                return "Data Inserted";
 
 
             } catch (MalformedURLException e) {
